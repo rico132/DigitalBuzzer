@@ -32,5 +32,6 @@ char* WsMessage::JSON(){
     uint8_t bufferLen = strnlen(buffer,WsMessage::JSON_MAX_LENGTH);
     this->outputStr = (char*)calloc(bufferLen + 1, sizeof(char));
     strncpy(this->outputStr, buffer, bufferLen);
+    free(buffer);
     return this->outputStr;
 }

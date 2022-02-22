@@ -117,6 +117,7 @@ void loop() {
   // Attach interrupt when registered
   if(firstAttach && registered){
     switchInterruptAttachment(true);
+    firstAttach = false;
   }
 
   // Send timestamp when buzzer is pressed
@@ -136,7 +137,7 @@ void sendTimestamp(){
   // Send buzzer-pressed packet with timestamp
   sendPacket(WsMessage::EPacketTypes::BUZZER_PRESSED, buffer, tsLen);
   Serial.println("Sent timestamp");
-
+  free(buffer);
   // Reset buzzerPushed
   buzzerPushed = false;
 }
